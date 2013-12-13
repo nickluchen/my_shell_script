@@ -2,6 +2,7 @@
 
 #set -x
 
+# You must set the CLU_DOMAIN_PW environment variable pri
 if [ "$CLU_DOMAIN_PW" == "" ]; then
     WINPW=Dolby-730
 else
@@ -9,49 +10,51 @@ else
 fi
 
 SAMBAPW=123456
-BJO_SERVER=bjo-file-01.dolby.net
-ENGINEER_SERVER=bjo-eng-bld-03.dolby.net
+BJO_FILE_SERVER=bjo-file-01.dolby.net
+BJO_ENG_SERVER=bjo-eng-bld-03.dolby.net
 
 RUNLEVEL=`runlevel|awk '{print $NF}'`
 
 if [ "$RUNLEVEL" -eq 5 ]; then
-    nautilus smb://${ENGINEER_SERVER}/clu
-    nautilus smb://${BJO_SERVER}/users/clu
+    nautilus smb://${BJO_ENG_SERVER}/clu
+    nautilus smb://${BJO_FILE_SERVER}/users/clu
 fi
 
-if [ ! -d /mnt/${ENGINEER_SERVER}_clu ]; then
-    sudo mkdir /mnt/${ENGINEER_SERVER}_clu
+if [ ! -d /Volumes/${BJO_ENG_SERVER}_clu ]; then
+    sudo mkdir -P /Volumes/${BJO_ENG_SERVER}_clu
 fi
-if [ ! -d /mnt/${ENGINEER_SERVER}_data ]; then
-    sudo mkdir /mnt/${ENGINEER_SERVER}_data
+if [ ! -d /data ]; then
+    sudo mkdir -P /data
 fi
-if [ ! -d /mnt/${BJO_SERVER}_clu ]; then
-    sudo mkdir /mnt/${BJO_SERVER}_clu
+if [ ! -d /mnt/${BJO_FILE_SERVER}_clu ]; then
+    sudo mkdir -P /mnt/${BJO_FILE_SERVER}_clu
 fi
-if [ ! -d /mnt/${BJO_SERVER}/Projects ]; then
-    #sudo mkdir /mnt/${BJO_SERVER}/
-    sudo mkdir -p /mnt/${BJO_SERVER}/Projects
+if [ ! -d /mnt/${BJO_FILE_SERVER}/Projects ]; then
+    sudo mkdir -p /mnt/${BJO_FILE_SERVER}/Projects
 fi
-if [ ! -d /mnt/${BJO_SERVER}/Common ]; then
-    sudo mkdir -p /mnt/${BJO_SERVER}/Common
+if [ ! -d /mnt/${BJO_FILE_SERVER}/Common ]; then
+    sudo mkdir -p /mnt/${BJO_FILE_SERVER}/Common
 fi
-if [ ! -d /mnt/${BJO_SERVER}/Source ]; then
-    sudo mkdir -p /mnt/${BJO_SERVER}/Source
+if [ ! -d /mnt/${BJO_FILE_SERVER}/Source ]; then
+    sudo mkdir -p /mnt/${BJO_FILE_SERVER}/Source
 fi
 
-if [ ! "`mount | grep ${BJO_SERVER}_clu`" ]; then
-	sudo mount -t cifs //${BJO_SERVER}/users/clu /mnt/${BJO_SERVER}_clu -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
+if [ -z "`mount | grep ${BJO_FILE_SERVER}_clu`" ]; then
+    sudo mount -t cifs //${BJO_FILE_SERVER}/users/clu /mnt/${BJO_FILE_SERVER}_clu -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
 fi
-if [ ! "`mount | grep Projects`" ]; then
-	sudo mount -t cifs //${BJO_SERVER}/Projects /mnt/${BJO_SERVER}/Projects -o user=clu,domain=DOLBYNET,passwd=$WINPW
+if [ -z "`mount | grep Projects`" ]; then
+    sudo mount -t cifs //${BJO_FILE_SERVER}/Projects /mnt/${BJO_FILE_SERVER}/Projects -o user=clu,domain=DOLBYNET,passwd=$WINPW
 fi
-if [ ! "`mount | grep Common`" ]; then
-	sudo mount -t cifs //${BJO_SERVER}/Users/Common /mnt/${BJO_SERVER}/Common -o user=clu,domain=DOLBYNET,passwd=$WINPW
+if [ -z "`mount | grep Common`" ]; then
+    sudo mount -t cifs //${BJO_FILE_SERVER}/Users/Common /mnt/${BJO_FILE_SERVER}/Common -o user=clu,domain=DOLBYNET,passwd=$WINPW
 fi
-if [ ! "`mount | grep Source`" ]; then
-	sudo mount -t cifs //${BJO_SERVER}/Source /mnt/${BJO_SERVER}/Source -o user=clu,domain=DOLBYNET,passwd=$WINPW
+if [ -z "`mount | grep Source`" ]; then
+    sudo mount -t cifs //${BJO_FILE_SERVER}/Source /mnt/${BJO_FILE_SERVER}/Source -o user=clu,domain=DOLBYNET,passwd=$WINPW
 fi
-sudo mount -t cifs //${ENGINEER_SERVER}/data /mnt/${ENGINEER_SERVER}_data -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
-sudo mount -t cifs //${ENGINEER_SERVER}/clu /Volumes/clu -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
-
+if [ -z "`mount | grep ${BJO_ENG_SERVER}/data`" ]; then
+    sudo mount -t cifs //${BJO_ENG_SERVER}/data /data -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
+fi
+if [ -z "`mount | grep ${BJO_ENG_SERVER}/clu`" ]; then
+    sudo mount -t cifs //${BJO_ENG_SERVER}/clu /Volumes/clu -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
+fi
     
