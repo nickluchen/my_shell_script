@@ -13,6 +13,7 @@ set expandtab
 set cindent
 
 " Highlight the column 81.
+" Please note this feature is introduced in VIM 7.3.
 set colorcolumn=81
 hi ColorColumn ctermbg=lightgrey
 
