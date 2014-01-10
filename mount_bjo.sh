@@ -86,4 +86,6 @@ if [ -z "`mount | grep ${BJO_ENG_SERVER}/clu`" ]; then
         /Volumes/clu \
         -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
 fi
-    
+
+mount | grep bjo
+
