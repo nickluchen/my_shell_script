@@ -14,7 +14,7 @@ fi
 
 SAMBAPW=123456
 BJO_FILE_SERVER=bjo-file-01.dolby.net
-BJO_ENG_SERVER=bjo-eng-bld-03.dolby.net
+BJO_ENG_SERVER=bjo-eng-bld-01.dolby.net
 
 #RUNLEVEL=`runlevel|awk '{print $NF}'`
 #if [ "$RUNLEVEL" -eq 5 ]; then
