@@ -31,7 +31,7 @@ then
     exit 0
 fi
 
-if [ ! -d /Volumes/${BJO_ENG_SERVER}_clu ]; then
+if [ ! -d /Volumes/clu ]; then
     sudo mkdir -p /Volumes/clu
 fi
 if [ ! -d /data ]; then
