@@ -32,7 +32,7 @@ then
 fi
 
 if [ ! -d /Volumes/${BJO_ENG_SERVER}_clu ]; then
-    sudo mkdir -p /Volumes/${BJO_ENG_SERVER}_clu
+    sudo mkdir -p /Volumes/clu
 fi
 if [ ! -d /data ]; then
     sudo mkdir -p /data
