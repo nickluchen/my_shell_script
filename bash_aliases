@@ -19,3 +19,16 @@ ssh_to_bjo()
 
 alias sshtobld='ssh_to_bjo bld'
 alias sshtomac='ssh_to_bjo mac'
+
+
+eng_ip_base='10.204.5'
+
+ssh_to_eng_device()
+{
+    ip=${eng_ip_base}.$1
+    user=$2
+
+    ssh_to ${ip} ${user}
+}
+
+alias sshtopanda='ssh_to_eng_device'
