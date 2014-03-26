@@ -16,7 +16,7 @@ else
     if [ "`uname -s`" = "Linux" ]
     then
         cmd='sudo mount'
-        ${cmd} -t smbfs //10.204.5.190/clu /home/clu/clu-desktop/ -o user=clu,uid=clu
+        ${cmd} -t cifs //10.204.5.190/clu /home/clu/clu-desktop/ -o user=clu,uid=clu
     elif [ "`uname -s`" = "Darwin" ]
     then
         cmd=mount
