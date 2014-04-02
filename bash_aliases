@@ -1,6 +1,8 @@
 alias sshtoclu='ssh clu@10.204.5.190'
 alias sshtopi='ssh clu@nickluchen.gicp.net'
+alias sshtobbb='ssh -p 2222 clu@nickluchen.gicp.net'
 alias sshto112='ssh clu@192.168.1.112'
+alias sshto113='ssh clu@192.168.1.113'
 
 ssh_to()
 {
