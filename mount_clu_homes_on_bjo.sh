@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mac_base_dir=/Users/Shared/clu
 
 if [ "$1" = "umount" ] || [ "$1" = "u" ]
 then
@@ -21,8 +22,9 @@ else
     elif [ "`uname -s`" = "Darwin" ]
     then
         cmd=mount
-        ${cmd} -t smbfs //clu@bjo-eng-bld-01/clu bld-home/
-        ${cmd} -t smbfs //clu@10.204.5.190/clu clu-desktop/
+        ${cmd} -t smbfs //clu@bjo-eng-bld-01/clu ${mac_base_dir}/bld-home/
+        ${cmd} -t smbfs //clu@10.204.5.190/clu ${mac_base_dir}/clu-desktop/
     fi
+    mount | grep clu
 fi
 
