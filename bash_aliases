@@ -36,3 +36,5 @@ ssh_to_eng_device()
 }
 
 alias sshtopanda='ssh_to_eng_device'
+
+alias sysup='sudo aptitude update && sudo aptitude upgrade' 
