@@ -31,6 +31,12 @@ then
     exit 0
 fi
 
+mac_base_dir=/Users/Shared/clu
+clu_bld_home=${mac_base_dir}/clu-bld-home
+
+if [ ! -d ${clu_bld_home} ]; then
+    sudo mkdir -p ${clu_bld_home}
+fi
 if [ ! -d /Volumes/clu ]; then
     sudo mkdir -p /Volumes/clu
 fi
@@ -83,7 +89,7 @@ fi
 if [ -z "`mount | grep ${BJO_ENG_SERVER}/clu`" ]; then
     sudo mount -t cifs \
         //${BJO_ENG_SERVER}/clu \
-        /Volumes/clu \
+        ${clu_bld_home} \
         -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
 fi
 
