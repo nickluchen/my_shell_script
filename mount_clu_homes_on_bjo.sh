@@ -14,7 +14,6 @@ then
     clu_desktop_home=${mac_base_dir}/clu-desktop-home
     clu_bld_home=${mac_base_dir}/clu-bld-home
 else
-then
     echo "Unknown OS. Will quit."
     exit -1
 fi
