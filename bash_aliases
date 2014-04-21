@@ -1,7 +1,15 @@
+# clu-desktop
 alias sshtoclu='ssh clu@10.204.5.190'
+
+# clu-vb-ubuntu32-01
+alias sshto189='ssh clu@10.204.5.189'
+
+# clu-raspberrypi
 alias sshtopi='ssh clu@nickluchen.gicp.net'
-alias sshtobbb='ssh -p 2222 clu@nickluchen.gicp.net'
 alias sshto112='ssh clu@192.168.1.112'
+
+# clu-bbb
+alias sshtobbb='ssh -p 2222 clu@nickluchen.gicp.net'
 alias sshto113='ssh clu@192.168.1.113'
 
 ssh_to()
