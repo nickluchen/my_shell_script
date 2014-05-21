@@ -19,12 +19,13 @@ ssh_to()
 }
 
 prefix=bjo-eng
+domain="dolby.net"
 
 ssh_to_bjo()
 {
     index=$2
     user=$3
-    server=${prefix}-${1}-${index}
+    server=${prefix}-${1}-${index}.${domain}
 
     ssh_to ${server} ${user}
 }
