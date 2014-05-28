@@ -13,6 +13,7 @@ elif [ "`uname -s`" = "Darwin" ]
 then
     clu_desktop_home=${mac_base_dir}/clu-desktop-home
     clu_bld_home=${mac_base_dir}/clu-bld-home
+    clu_domain_home=${mac_base_dir}/clu-domain-home
 else
     echo "Unknown OS. Will quit."
     exit -1
@@ -28,6 +29,7 @@ then
     then
         cmd=umount
         ${cmd} ${clu_bld_home}
+        ${cmd} ${clu_domain_home}
     fi
     ${cmd} ${clu_desktop_home}
 else
@@ -39,8 +41,9 @@ else
     elif [ "`uname -s`" = "Darwin" ]
     then
         cmd=mount
-        ${cmd} -t smbfs //clu@bjo-eng-bld-01/clu     ${clu_bld_home}
-        ${cmd} -t smbfs //clu@${clu_desktop_ip}/clu  ${clu_desktop_home}
+        ${cmd} -t smbfs //clu@bjo-eng-bld-01.dolby.net/clu    ${clu_bld_home}
+        ${cmd} -t smbfs //clu@bjo-file-01.dolby.net/users/clu ${clu_domain_home}
+        ${cmd} -t smbfs //clu@${clu_desktop_ip}/clu           ${clu_desktop_home}
     fi
     mount | grep clu
 fi
