@@ -1,3 +1,11 @@
+
+# Some prefix settings
+eng_ip_base='10.204.5'
+
+prefix=bjo-eng
+domain="dolby.net"
+
+
 # clu-desktop
 alias sshtoclu='ssh clu@10.204.5.190'
 
@@ -12,14 +20,17 @@ alias sshto112='ssh clu@192.168.1.112'
 alias sshtobbb='ssh -p 2222 clu@nickluchen.gicp.net'
 alias sshto113='ssh clu@192.168.1.113'
 
+# A panda board in BJO
+# PandaBoard #9 (Rev B1), Ubuntu 11.10, ubuntu/ubuntu
+panda_user=ubuntu
+panda_ip=132
+alias sshtopanda="ssh ${panda_user}@${eng_ip_base}.${panda_ip}"
+
 ssh_to()
 {
     echo "Will: ssh $2@$1"
     ssh $2@$1
 }
-
-prefix=bjo-eng
-domain="dolby.net"
 
 ssh_to_bjo()
 {
@@ -34,8 +45,6 @@ alias sshtobld='ssh_to_bjo bld'
 alias sshtomac='ssh_to_bjo mac'
 
 
-eng_ip_base='10.204.5'
-
 ssh_to_eng_device()
 {
     ip=${eng_ip_base}.$1
@@ -44,7 +53,7 @@ ssh_to_eng_device()
     ssh_to ${ip} ${user}
 }
 
-alias sshtopanda='ssh_to_eng_device'
+#alias sshtopanda='ssh_to_eng_device'
 alias sshtoeng='ssh_to_eng_device'
 
 alias sysup='sudo aptitude update && sudo aptitude upgrade' 
