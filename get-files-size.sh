@@ -18,7 +18,18 @@ du --max-depth=1 -h > ${TEMP_FILE}
 sed -i 's/$/&\//g' ${TEMP_FILE}
 
 # Get the size of each file, excluding directories
-ls -ahlS -1 -F | grep -v "/$" | awk '{print $5" \t./" $(9)}' >> ${TEMP_FILE}
+#ls -ahlS -1 -F | grep -v "/$" | awk '{print $5" \t./" $(9)}' >> ${TEMP_FILE}
+ls -alhS -1 -F | grep -v "/$" | awk '{ 
+                    printf $5"\t./"$9; 
+                    if (NF > 9)
+                    { 
+                        for(i=10; i<=NF; i++) 
+                            {
+                                printf " "$i
+                            }
+                    }
+                    printf "\n"
+                }' >> ${TEMP_FILE}
 
 
 echo Listing by size
