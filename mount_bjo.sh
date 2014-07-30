@@ -12,6 +12,14 @@ else
     WINPW=$CLU_DOMAIN_PW
 fi
 
+if [[ "${WINPW}" == *\,* ]]; then
+    echo The password is including ,
+    echo You should pass the password manually, for each mount command.
+    PASSWD_OPT=""
+else
+    PASSWD_OPT="passwd=$WINPW"
+fi
+
 SAMBAPW=123456
 BJO_FILE_SERVER=bjo-file-01.dolby.net
 BJO_ENG_SERVER=bjo-eng-bld-01.dolby.net
@@ -60,37 +68,37 @@ if [ -z "`mount | grep ${BJO_FILE_SERVER}_clu`" ]; then
     sudo mount -t cifs \
         //${BJO_FILE_SERVER}/users/clu \
         /mnt/${BJO_FILE_SERVER}_clu \
-        -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
+        -o user=clu,domain=DOLBYNET,uid=clu,gid=clu,$PASSWD_OPT
 fi
 if [ -z "`mount | grep Projects`" ]; then
     sudo mount -t cifs \
         //${BJO_FILE_SERVER}/Projects \
         /mnt/${BJO_FILE_SERVER}/Projects \
-        -o user=clu,domain=DOLBYNET,passwd=$WINPW
+        -o user=clu,domain=DOLBYNET,$PASSWD_OPT
 fi
 if [ -z "`mount | grep Common`" ]; then
     sudo mount -t cifs \
         //${BJO_FILE_SERVER}/Users/Common \
         /mnt/${BJO_FILE_SERVER}/Common \
-        -o user=clu,domain=DOLBYNET,passwd=$WINPW
+        -o user=clu,domain=DOLBYNET,$PASSWD_OPT
 fi
 if [ -z "`mount | grep Source`" ]; then
     sudo mount -t cifs \
         //${BJO_FILE_SERVER}/Source \
         /mnt/${BJO_FILE_SERVER}/Source \
-        -o user=clu,domain=DOLBYNET,passwd=$WINPW
+        -o user=clu,domain=DOLBYNET,$PASSWD_OPT
 fi
 if [ -z "`mount | grep ${BJO_ENG_SERVER}/data`" -a "$1" == "data" ]; then
     sudo mount -t cifs \
         //${BJO_ENG_SERVER}/data \
         /data \
-        -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
+        -o user=clu,domain=DOLBYNET,uid=clu,gid=clu,$PASSWD_OPT
 fi
 if [ -z "`mount | grep ${BJO_ENG_SERVER}/clu`" ]; then
     sudo mount -t cifs \
         //${BJO_ENG_SERVER}/clu \
         ${clu_bld_home} \
-        -o user=clu,domain=DOLBYNET,passwd=$WINPW,uid=clu,gid=clu
+        -o user=clu,domain=DOLBYNET,uid=clu,gid=clu,$PASSWD_OPT
 fi
 
 mount | grep bjo
