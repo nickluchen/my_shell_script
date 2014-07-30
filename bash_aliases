@@ -2,7 +2,7 @@
 # Some prefix settings
 eng_ip_base='10.204.5'
 
-prefix=bjo-eng
+prefix="bjo-eng"
 domain="dolby.net"
 
 
@@ -13,11 +13,13 @@ alias sshtoclu='ssh clu@10.204.5.190'
 alias sshto189='ssh clu@10.204.5.189'
 
 # clu-raspberrypi
-alias sshtopi='ssh clu@nickluchen.gicp.net'
+#alias sshtopi='ssh clu@nickluchen.gicp.net'
+alias sshtopi='ssh -p 2112 clu@nickluchen.gicp.net'
 alias sshto112='ssh clu@192.168.1.112'
 
 # clu-bbb
-alias sshtobbb='ssh -p 2222 clu@nickluchen.gicp.net'
+#alias sshtobbb='ssh -p 2222 clu@nickluchen.gicp.net'
+alias sshtobbb='ssh -p 2113 clu@nickluchen.gicp.net'
 alias sshto113='ssh clu@192.168.1.113'
 
 # A panda board in BJO
