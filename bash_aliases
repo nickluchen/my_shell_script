@@ -22,6 +22,9 @@ alias sshto112='ssh clu@192.168.1.112'
 alias sshtobbb='ssh -p 2113 clu@nickluchen.gicp.net'
 alias sshto113='ssh clu@192.168.1.113'
 
+# clu-pd-ubuntu
+alias sshtopd='ssh -p 2554 clu@127.0.0.1'
+
 # A panda board in BJO
 # PandaBoard #9 (Rev B1), Ubuntu 11.10, ubuntu/ubuntu
 panda_user=ubuntu
