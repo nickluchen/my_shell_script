@@ -25,11 +25,17 @@ alias sshto113='ssh clu@192.168.1.113'
 # clu-pd-ubuntu
 alias sshtopd='ssh -p 2554 clu@127.0.0.1'
 
-# A panda board in BJO
+# A panda board running soft float Ubuntu in BJO
 # PandaBoard #9 (Rev B1), Ubuntu 11.10, ubuntu/ubuntu
 panda_user=ubuntu
 panda_ip=132
 alias sshtopanda="ssh ${panda_user}@${eng_ip_base}.${panda_ip}"
+
+# A panda board running hard float Ubuntu in BJO
+# PandaBoard #13 (Rev B1), Ubuntu 12.04 armhf, ubuntu/ubuntu
+hfpanda_user=ubuntu
+hfpanda_ip=136
+alias sshtohfpanda="ssh ${hfpanda_user}@${eng_ip_base}.${hfpanda_ip}"
 
 ssh_to()
 {
