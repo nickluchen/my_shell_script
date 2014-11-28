@@ -20,3 +20,9 @@ hi ColorColumn ctermbg=lightgrey
 " Mapping the file with given extension to specified syntax.
 au BufNewFile,BufRead *.mb set filetype=sh
 au BufNewFile,BufRead *.p2_plugin set filetype=python
+
+""""" settings for gvim(vim-gtk, vim-gnome) under Linux """""
+"set guifont=Consolas\ 10
+
+""""" Font settings for MacVim """""
+"set gfn=Consolas:h13
