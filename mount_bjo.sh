@@ -15,18 +15,18 @@ fi
 if [[ "${WINPW}" == *\,* ]]; then
     echo The password is including ,
     echo You should pass the password manually, for each mount command.
-    PASSWD_OPT=""
+    PASSWD_OPTION=""
 else
-    PASSWD_OPT="passwd=$WINPW"
+    PASSWD_OPTION="passwd=$WINPW"
 fi
 
 SAMBAPW=123456
 BJO_FILE_SERVER=bjo-file-01.dolby.net
-BJO_ENG_SERVER=bjo-eng-bld-01.dolby.net
+BJO_BLD_SERVER=bjo-eng-bld-01.dolby.net
 
 #RUNLEVEL=`runlevel|awk '{print $NF}'`
 #if [ "$RUNLEVEL" -eq 5 ]; then
-#    nautilus smb://${BJO_ENG_SERVER}/clu
+#    nautilus smb://${BJO_BLD_SERVER}/clu
 #    nautilus smb://${BJO_FILE_SERVER}/users/clu
 #fi
 
@@ -39,21 +39,8 @@ then
     exit 0
 fi
 
-mac_base_dir=/Users/Shared/clu
-clu_bld_home=${mac_base_dir}/clu-bld-home
 
-if [ ! -d ${clu_bld_home} ]; then
-    sudo mkdir -p ${clu_bld_home}
-fi
-if [ ! -d /Volumes/clu ]; then
-    sudo mkdir -p /Volumes/clu
-fi
-if [ ! -d /data ]; then
-    sudo mkdir -p /data
-fi
-if [ ! -d /mnt/${BJO_FILE_SERVER}_clu ]; then
-    sudo mkdir -p /mnt/${BJO_FILE_SERVER}_clu
-fi
+# CIFS/Samba mounts for BJO_FILE_SERVER
 if [ ! -d /mnt/${BJO_FILE_SERVER}/Projects ]; then
     sudo mkdir -p /mnt/${BJO_FILE_SERVER}/Projects
 fi
@@ -64,42 +51,38 @@ if [ ! -d /mnt/${BJO_FILE_SERVER}/Source ]; then
     sudo mkdir -p /mnt/${BJO_FILE_SERVER}/Source
 fi
 
-if [ -z "`mount | grep ${BJO_FILE_SERVER}_clu`" ]; then
-    sudo mount -t cifs \
-        //${BJO_FILE_SERVER}/users/clu \
-        /mnt/${BJO_FILE_SERVER}_clu \
-        -o user=clu,domain=DOLBYNET,uid=clu,gid=clu,$PASSWD_OPT
-fi
 if [ -z "`mount | grep Projects`" ]; then
     sudo mount -t cifs \
         //${BJO_FILE_SERVER}/Projects \
         /mnt/${BJO_FILE_SERVER}/Projects \
-        -o user=clu,domain=DOLBYNET,$PASSWD_OPT
+        -o user=clu,domain=DOLBYNET,$PASSWD_OPTION
 fi
 if [ -z "`mount | grep Common`" ]; then
     sudo mount -t cifs \
         //${BJO_FILE_SERVER}/Users/Common \
         /mnt/${BJO_FILE_SERVER}/Common \
-        -o user=clu,domain=DOLBYNET,$PASSWD_OPT
+        -o user=clu,domain=DOLBYNET,$PASSWD_OPTION
 fi
 if [ -z "`mount | grep Source`" ]; then
     sudo mount -t cifs \
         //${BJO_FILE_SERVER}/Source \
         /mnt/${BJO_FILE_SERVER}/Source \
-        -o user=clu,domain=DOLBYNET,$PASSWD_OPT
+        -o user=clu,domain=DOLBYNET,$PASSWD_OPTION
 fi
-if [ -z "`mount | grep ${BJO_ENG_SERVER}/data`" -a "$1" == "data" ]; then
+##########
+
+# CIFS/Samba mounts for BJO_BLD_SERVER
+if [ ! -d /data ]; then
+    sudo mkdir -p /data
+fi
+
+if [ -z "`mount | grep ${BJO_BLD_SERVER}/data`" -a "$1" == "data" ]; then
     sudo mount -t cifs \
-        //${BJO_ENG_SERVER}/data \
+        //${BJO_BLD_SERVER}/data \
         /data \
-        -o user=clu,domain=DOLBYNET,uid=clu,gid=clu,$PASSWD_OPT
+        -o user=clu,domain=DOLBYNET,uid=clu,gid=clu,$PASSWD_OPTION
 fi
-if [ -z "`mount | grep ${BJO_ENG_SERVER}/clu`" ]; then
-    sudo mount -t cifs \
-        //${BJO_ENG_SERVER}/clu \
-        ${clu_bld_home} \
-        -o user=clu,domain=DOLBYNET,uid=clu,gid=clu,$PASSWD_OPT
-fi
+##########
 
 mount | grep bjo
 
