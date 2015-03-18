@@ -23,7 +23,7 @@ if [ "`uname -s`" = "Linux" ]; then
   fi
 
   if [[ "${WINPW}" == *\,* ]]; then
-    echo The password is including the comma sign (,)
+    echo The password is including the comma sign ,
     echo You should pass the password manually, for each mount command.
     PASSWD_OPTION=""
   else
