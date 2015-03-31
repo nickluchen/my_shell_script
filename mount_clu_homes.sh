@@ -75,8 +75,8 @@ else
     then
         check_and_mount "mount" "-t smbfs" //clu@${bjo_bld_server}/clu        ${clu_bld_home}
         check_and_mount "mount" "-t smbfs" //clu@${bjo_file_server}/users/clu ${clu_domain_home}
-        check_and_mount "sudo mount" "-o resvport -t nfs" ${clu_desktop_ip}:/home/clu        ${clu_desktop_home}
-        #check_and_mount "mount" "-t smbfs" //clu@${clu_desktop_ip}/clu        ${clu_desktop_home}
+        #check_and_mount "sudo mount" "-o resvport -t nfs" ${clu_desktop_ip}:/home/clu        ${clu_desktop_home}
+        check_and_mount "mount" "-t smbfs" //clu@${clu_desktop_ip}/clu        ${clu_desktop_home}
     fi
     mount | grep clu
 fi
