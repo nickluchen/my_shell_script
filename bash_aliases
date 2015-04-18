@@ -6,6 +6,11 @@ alias sysup='sudo aptitude update && sudo aptitude upgrade; date'
 ##### CLU Personal #####
 clu_oray_hostname="nickluchen.gicp.net"
 
+add_ssh_key()
+{
+  cat ~/.ssh/id_rsa.pub | ssh "$1" "mkdir -p ~/.ssh; cat >> ~/.ssh/authorized_keys"
+}
+
 # clu-raspberrypi
 alias sshto112='ssh clu@192.168.1.112'
 alias sshtopi='ssh -p 2112 clu@${clu_oray_hostname}'
