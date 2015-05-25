@@ -44,11 +44,14 @@ check_and_mkdir()
 
 check_and_mount()
 {
-    if [ -z "`mount | grep $4`" ]; then
-        $1 $2 $3 $4 $5
-    else
-        echo "Mount point $4 already mounted. Skip."
+  if [ -z "`mount | grep $4`" ]; then
+    if [ -n "`echo $1 | grep sudo`" ]; then
+      echo "Will execute sudo command, please input password for that cmd"
     fi
+    $1 $2 $3 $4 $5
+  else
+    echo "Mount point $4 already mounted. Skip."
+  fi
 }
 
 
