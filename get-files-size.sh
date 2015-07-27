@@ -13,9 +13,9 @@ fi
 TEMP_FILE=/tmp/${CURRENT_USER}_temp.txt
 
 # Get the size of each directory
-du --max-depth=1 -h > ${TEMP_FILE}
+du -d 1 -h > ${TEMP_FILE}
 # Add the tailing / to each item
-sed -i 's/$/&\//g' ${TEMP_FILE}
+sed -i -e 's/$/&\//g' ${TEMP_FILE}
 
 # Get the size of each file, excluding directories
 #ls -ahlS -1 -F | grep -v "/$" | awk '{print $5" \t./" $(9)}' >> ${TEMP_FILE}
