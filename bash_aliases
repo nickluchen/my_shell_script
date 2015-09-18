@@ -77,9 +77,9 @@ alias sshtoclu='ssh clu@10.204.5.190'
 alias sshto189='ssh clu@10.204.5.189'
 
 # A panda board running soft float Ubuntu in BJO
-# PandaBoard #9 (Rev B1), Ubuntu 11.10, ubuntu/ubuntu
+# PandaBoard #10 (Rev B1), Ubuntu 11.10, ubuntu/ubuntu
 panda_user=ubuntu
-panda_ip=132
+panda_ip=133
 alias sshtopanda="ssh ${panda_user}@${eng_ip_base}.${panda_ip}"
 
 # A panda board running hard float Ubuntu in BJO
