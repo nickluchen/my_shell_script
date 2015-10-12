@@ -71,7 +71,8 @@ else
     then
         check_and_mount "${sudo_cmd} mount" "-t cifs" //${bjo_file_server}/users/clu ${clu_domain_home} "-o user=clu,domain=DOLBYNET,uid=clu,gid=clu,$PASSWD_OPTION"
         check_and_mount "${sudo_cmd} mount" "-t cifs" //${bjo_bld_server}/clu ${clu_bld_home} "-o user=clu,domain=DOLBYNET,uid=clu,gid=clu,$PASSWD_OPTION"
-        if [ "`hostname`" != "clu-desktop" ]; then
+        #if [ "`hostname`" != "clu-desktop" ]; then
+        if [ "`hostname`" != "clu-dell-ubuntu" ]; then
           check_and_mount "${sudo_cmd} mount" "-t nfs -o nolock" ${clu_desktop_ip}:/home/clu ${clu_desktop_home}
         fi
     elif [ "`uname -s`" = "Darwin" ]
