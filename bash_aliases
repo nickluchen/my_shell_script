@@ -73,8 +73,9 @@ domain="dolby.net"
 # clu-desktop
 alias sshtoclu='ssh clu@10.204.5.190'
 
-# clu-vb-ubuntu32-01
+# clu-vb-ubuntu
 alias sshto189='ssh clu@10.204.5.189'
+alias sshtovu='sshto189'
 
 # A panda board running soft float Ubuntu in BJO
 # PandaBoard #10 (Rev B1), Ubuntu 11.10, ubuntu/ubuntu
