@@ -3,6 +3,17 @@
 alias sysup='sudo aptitude update && sudo aptitude upgrade; date' 
 
 
+##### Developement #####
+gen_make_log()
+{
+  if [ -z "$1" ]; then
+    echo "Must nominate a target."
+  else
+    make $1 2>&1 | tee build_$1.log
+  fi
+}
+
+
 ##### CLU Personal #####
 clu_oray_hostname="nickluchen.gicp.net"
 
