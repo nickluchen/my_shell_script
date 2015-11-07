@@ -70,6 +70,10 @@ scpfrombbb()
   fi
 }
 
+# OrangePi
+alias sshto114='ssh clu@192.168.1.114'
+alias sshtobbb='ssh -p 2114 clu@${clu_oray_hostname}'
+
 # clu-pd-ubuntu
 alias sshtopd='ssh -p 2554 clu@127.0.0.1'
 
