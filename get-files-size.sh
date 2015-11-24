@@ -13,7 +13,9 @@ fi
 TEMP_FILE=/tmp/${CURRENT_USER}_temp.txt
 
 # Get the size of each directory
-du -d 1 -h > ${TEMP_FILE}
+# -d is not supported with old version of du
+# du -d 1 -h > ${TEMP_FILE}
+du --max-depth 1 -h > ${TEMP_FILE}
 # Add the tailing / to each item
 sed -i -e 's/$/&\//g' ${TEMP_FILE}
 
