@@ -28,8 +28,8 @@ alias sshtopi='ssh -p 2112 clu@${clu_oray_hostname}'
 scptopi()
 {
   if [ -z "$2" ]; then
-    echo "Will: scp -P 2112 $1 clu@${clu_oray_hostname}:/home/smbshare_1/tmp/"
-    scp -P 2112 $1 clu@${clu_oray_hostname}:/home/smbshare_1/tmp/
+    echo "Will: scp -P 2112 $1 clu@${clu_oray_hostname}:/tmp/"
+    scp -P 2112 $1 clu@${clu_oray_hostname}:/tmp/
   else
     echo "Will: scp -P 2112 $1 clu@${clu_oray_hostname}:$2"
     scp -P 2112 $1 clu@${clu_oray_hostname}:$2
@@ -52,8 +52,8 @@ alias sshtobbb='ssh -p 2113 clu@${clu_oray_hostname}'
 scptobbb()
 {
   if [ -z "$2" ]; then
-    echo "Will: scp -P 2113 $1 clu@${clu_oray_hostname}:/home/data-1/tmp"
-    scp -P 2113 $1 clu@${clu_oray_hostname}:/home/data-1/tmp
+    echo "Will: scp -P 2113 $1 clu@${clu_oray_hostname}:/misc/data-1/tmp"
+    scp -P 2113 $1 clu@${clu_oray_hostname}:/misc/data-1/tmp
   else
     echo "Will: scp -P 2113 $1 clu@${clu_oray_hostname}:$2"
     scp -P 2113 $1 clu@${clu_oray_hostname}:$2
@@ -73,6 +73,27 @@ scpfrombbb()
 # OrangePi
 alias sshto114='ssh clu@192.168.1.114'
 alias sshtoorange='ssh -p 2114 clu@${clu_oray_hostname}'
+scptoorange()
+{
+  if [ -z "$2" ]; then
+    echo "Will: scp -P 2114 $1 clu@${clu_oray_hostname}:/media/raid1_1/tmp"
+    scp -P 2114 $1 clu@${clu_oray_hostname}:/media/raid1_1/tmp
+  else
+    echo "Will: scp -P 2114 $1 clu@${clu_oray_hostname}:$2"
+    scp -P 2114 $1 clu@${clu_oray_hostname}:$2
+  fi
+}
+
+scpfromorange()
+{
+  if [ $# == 2 ]; then
+    echo "Will: scp -P 2114 clu@${clu_oray_hostname}:$1 $2"
+    scp -P 2114 clu@${clu_oray_hostname}:$1 $2
+  else
+    echo "Usage: scpfrompi src_on_remote dest_on_local"
+  fi
+}
+
 
 # clu-pd-ubuntu
 alias sshtopd='ssh -p 2554 clu@127.0.0.1'
