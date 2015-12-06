@@ -15,7 +15,12 @@ TEMP_FILE=/tmp/${CURRENT_USER}_temp.txt
 # Get the size of each directory
 # -d is not supported with old version of du
 # du -d 1 -h > ${TEMP_FILE}
-du --max-depth 1 -h > ${TEMP_FILE}
+if [ "`uname -s`" = "Darwin" ]; then
+  du -d 1 -h > ${TEMP_FILE}
+  ls -alhrS | grep -v -e "^d" | awk '{print $5 "\t" $9}' >> ${TEMP_FILE}
+else
+  du --max-depth 1 -h > ${TEMP_FILE}
+fi
 # Add the tailing / to each item
 sed -i -e 's/$/&\//g' ${TEMP_FILE}
 
