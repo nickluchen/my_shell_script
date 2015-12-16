@@ -8,9 +8,9 @@ set background=dark
 
 set tabstop=4
 set shiftwidth=4
-set expandtab
 
-set cindent
+"set expandtab
+"set cindent
 
 " Highlight the column 81.
 " Please note this feature is introduced in VIM 7.3.
