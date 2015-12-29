@@ -1,7 +1,19 @@
 
 ##### Debian/Ubuntu #####
-alias sysup='sudo aptitude update && sudo aptitude upgrade; date' 
+#alias sysup='sudo aptitude update && sudo aptitude upgrade; date' 
+alias sysup='do_sysup $1'
 
+do_sysup()
+{
+  if [ -n "`which aptitude`" ]; then
+    pkg_mgr=aptitude
+  else
+    pkg_mgr=apt-get
+  fi
+
+  sudo ${pkg_mgr} update && sudo ${pkg_mgr} $1 upgrade
+  date
+}
 
 ##### Developement #####
 gen_make_log()
