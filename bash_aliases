@@ -118,12 +118,15 @@ prefix="bjo-eng"
 domain="dolby.net"
 
 
-# clu-desktop
+# clu-dell-ubuntu
 alias sshtoclu='ssh clu@10.204.5.190'
 
-# clu-vb-ubuntu
+# clu-vb-ubuntu (10.04)
 alias sshto189='ssh clu@10.204.5.189'
 alias sshtovu='sshto189'
+
+# clu-vb-debian (8.x)
+alias sshto199='ssh clu@10.204.5.199'
 
 # A panda board running soft float Ubuntu in BJO
 # PandaBoard #10 (Rev B1), Ubuntu 11.10, ubuntu/ubuntu
