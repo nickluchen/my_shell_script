@@ -1,3 +1,5 @@
+##### Common #####
+alias lsc='ls *.c *.h *.inc'
 
 ##### Debian/Ubuntu #####
 #alias sysup='sudo aptitude update && sudo aptitude upgrade; date' 
