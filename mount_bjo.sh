@@ -82,6 +82,21 @@ if [ -z "`mount | grep ${BJO_BLD_SERVER}/data`" -a "$1" == "data" ]; then
         /data \
         -o user=clu,domain=DOLBYNET,uid=clu,gid=clu,$PASSWD_OPTION
 fi
+
+# It's recommended to use autofs to mount the sub-dir of data on VM
+# TI:
+# In /etc/auto.master
+#     /-	/etc/auto.ti
+# In /etc/auto.ti
+#    /data/soft/linux/opt/TI bjo-eng-bld-01.dolby.net:/data/soft/linux/opt/TI
+#    /data/soft/linux/opt/dsp-tools/ti bjo-eng-bld-01.dolby.net:/data/soft/linux/opt/dsp-tools/ti 
+#
+# Android:
+# In /etc/auto.master
+#     /-	/etc/auto.android
+# In /etc/anto.android
+#    /data/soft/linux/opt/Android bjo-eng-bld-01.dolby.net:/data/soft/linux/opt/Android
+#
 ##########
 
 mount | grep bjo
