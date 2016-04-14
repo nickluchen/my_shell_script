@@ -86,16 +86,14 @@ fi
 # It's recommended to use autofs to mount the sub-dir of data on VM
 # TI:
 # In /etc/auto.master
-#     /-	/etc/auto.ti
-# In /etc/auto.ti
-#    /data/soft/linux/opt/TI bjo-eng-bld-01.dolby.net:/data/soft/linux/opt/TI
-#    /data/soft/linux/opt/dsp-tools/ti bjo-eng-bld-01.dolby.net:/data/soft/linux/opt/dsp-tools/ti 
+#     /-	/etc/auto.data_tools
 #
-# Android:
-# In /etc/auto.master
-#     /-	/etc/auto.android
-# In /etc/anto.android
-#    /data/soft/linux/opt/Android bjo-eng-bld-01.dolby.net:/data/soft/linux/opt/Android
+# In /etc/auto.data_tools
+#     /data/soft/linux/opt/Android 10.204.5.5:/data/soft/linux/opt/Android
+#     /data/soft/linux/opt/dsp-tools/sourcery-codebench/lite/mips 10.204.5.5:/data/soft/linux/opt/dsp-tools/sourcery-codebench/lite/mips
+#     /data/soft/linux/opt/Qemu 10.204.5.5:/data/soft/linux/opt/Qemu
+#     /data/soft/linux/opt/TI bjo-eng-bld-01.dolby.net:/data/soft/linux/opt/TI
+#     /data/soft/linux/opt/dsp-tools/ti bjo-eng-bld-01.dolby.net:/data/soft/linux/opt/dsp-tools/ti
 #
 ##########
 
