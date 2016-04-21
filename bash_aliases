@@ -115,32 +115,14 @@ alias sshtopd='ssh -p 2554 clu@127.0.0.1'
 
 ##### CLU DLB Stuff #####
 # Some prefix settings
-eng_ip_base='10.204.5'
+bjo_eng_ip_base='10.204.5'
 prefix="bjo-eng"
 domain="dolby.net"
+# Common user names
+user_clu="clu"
+user_dolby="dolby"
+user_ubuntu="ubuntu"
 
-
-# clu-dell-ubuntu
-alias sshtoclu='ssh clu@10.204.5.190'
-
-# clu-vb-ubuntu (10.04)
-alias sshto189='ssh clu@10.204.5.189'
-alias sshtovu='sshto189'
-
-# clu-vb-debian (8.x)
-alias sshto199='ssh clu@10.204.5.199'
-
-# A panda board running soft float Ubuntu in BJO
-# PandaBoard #10 (Rev B1), Ubuntu 11.10, ubuntu/ubuntu
-panda_user=ubuntu
-panda_ip=133
-alias sshtopanda="ssh ${panda_user}@${eng_ip_base}.${panda_ip}"
-
-# A panda board running hard float Ubuntu in BJO
-# PandaBoard #13 (Rev B1), Ubuntu 12.04 armhf, ubuntu/ubuntu
-hfpanda_user=ubuntu
-hfpanda_ip=136
-alias sshtohfpanda="ssh ${hfpanda_user}@${eng_ip_base}.${hfpanda_ip}"
 
 ssh_to()
 {
@@ -163,7 +145,7 @@ alias sshtomac='ssh_to_bjo mac'
 
 ssh_to_eng_device()
 {
-    ip=${eng_ip_base}.$1
+    ip=${bjo_eng_ip_base}.$1
     user=$2
 
     ssh_to ${ip} ${user}
@@ -171,3 +153,28 @@ ssh_to_eng_device()
 
 alias sshtoeng='ssh_to_eng_device'
 
+
+# clu-dell-ubuntu
+alias sshtoclu='sshtoeng 190 ${user_clu}'
+
+# clu-vb-ubuntu (10.04)
+alias sshto189='sshtoeng 189 ${user_clu}'
+alias sshtovu='sshto189'
+
+# clu-vb-debian (8.x)
+alias sshto199='sshtoeng 199 ${user_clu}'
+
+# A panda board running soft float Ubuntu in BJO
+# PandaBoard #10 (Rev B1), Ubuntu 11.10, ubuntu/ubuntu
+panda_ip=133
+alias sshtopanda="sshtoeng ${panda_ip} ${user_ubuntu}"
+
+# A panda board running hard float Ubuntu in BJO
+# PandaBoard #13 (Rev B1), Ubuntu 12.04 armhf, ubuntu/ubuntu
+hfpanda_ip=136
+alias sshtohfpanda="sshtoeng ${hfpanda_ip} ${user_ubuntu}"
+
+# A Intel NUC Box set up based on TSDR image
+# NUC5i3RYH
+nuc_ip=185
+alias sshtonuc="sshtoeng ${nuc_ip} ${user_dolby}"
