@@ -154,12 +154,11 @@ ssh_to_eng_device()
 alias sshtoeng='ssh_to_eng_device'
 
 
-# clu-dell-ubuntu
+# clu-dell-ubuntu (Dell laptop, 14.04 LTS desktop)
 alias sshtoclu='sshtoeng 190 ${user_clu}'
 
-# clu-vb-ubuntu (10.04)
+# clu-desktop-ubuntu (Dell desktop, 16.04 LTS desktop)
 alias sshto189='sshtoeng 189 ${user_clu}'
-alias sshtovu='sshto189'
 
 # clu-vb-debian (8.x)
 alias sshto199='sshtoeng 199 ${user_clu}'
