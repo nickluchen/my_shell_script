@@ -23,6 +23,7 @@ sudo apt-get install aptitude
 echo "Install other tools"
 set -x
 sudo aptitude install \
+  safe-rm \
   vim \
   samba \
   cifs-utils \
@@ -36,7 +37,10 @@ sudo aptitude install \
   nfs-common \
   terminator \
   iperf \
-  ranger
+  ranger \
+  autofs \
+  aria2 \
+  axel
 set +x
 
 echo "Get my_shell_script from GitHub"
@@ -52,10 +56,11 @@ if [ ! -d $users_bin ]; then
   mkdir -p $users_bin
 fi
 
-ln -s $HOME/my_shell_script/get-files-size.sh $HOME/bin/get-files-size.sh
-ln -s $HOME/my_shell_script/get_size_of_my_home.sh $HOME/bin/get_size_of_my_home.sh
-ln -s $HOME/my_shell_script/mount_bjo.sh $HOME/bin/mount_bjo.sh
-ln -s $HOME/my_shell_script/mount_clu_homes.sh $HOME/bin/mount_clu_homes.sh
+cd ${users_bin}
+for f in `ls $HOME/my_shell_script/*.sh`; do
+  ln -s $f `basename $f`
+done
+cd -
 
 echo "Everything is done."
 
