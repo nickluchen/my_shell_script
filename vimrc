@@ -15,7 +15,7 @@ set shiftwidth=4
 " Highlight the column 81.
 " Please note this feature is introduced in VIM 7.3.
 set colorcolumn=81
-hi ColorColumn ctermbg=lightgrey
+"hi ColorColumn ctermbg=lightgrey
 
 " Mapping the file with given extension to specified syntax.
 au BufNewFile,BufRead *.mb set filetype=sh
