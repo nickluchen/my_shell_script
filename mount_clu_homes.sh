@@ -1,12 +1,14 @@
 #!/bin/bash
 
 clu_desktop_ip='10.204.5.190'
+clu_vb_debian_ip='10.204.5.199'
 bjo_file_server=bjo-file-01.dolby.net
 bjo_bld_server=bjo-eng-bld-01.dolby.net 
 
 base_dir=/Volumes
 
 clu_desktop_home=${base_dir}/clu-desktop-home
+clu_vb_debian_home=${base_dir}/clu-vb-debian-home
 clu_domain_home=${base_dir}/clu-domain-home
 clu_bld_home=${base_dir}/clu-bld-home
 
@@ -58,6 +60,7 @@ check_and_mount()
 ##### Main #####
 
 check_and_mkdir ${clu_desktop_home}
+check_and_mkdir ${clu_vb_debian_home}
 check_and_mkdir ${clu_domain_home}
 check_and_mkdir ${clu_bld_home}
 
@@ -66,6 +69,7 @@ then
     ${sudo_cmd} umount ${clu_bld_home}
     ${sudo_cmd} umount ${clu_domain_home}
     ${sudo_cmd} umount ${clu_desktop_home}
+    ${sudo_cmd} umount ${clu_vb_debian_home}
 else
     if [ "`uname -s`" = "Linux" ]
     then
@@ -74,12 +78,14 @@ else
         #if [ "`hostname`" != "clu-desktop" ]; then
         if [ "`hostname`" != "clu-dell-ubuntu" ]; then
           check_and_mount "${sudo_cmd} mount" "-t nfs -o nolock" ${clu_desktop_ip}:/home/clu ${clu_desktop_home}
+          check_and_mount "${sudo_cmd} mount" "-t nfs -o nolock" ${clu_vb_debian_ip}:/home/clu ${clu_vb_debian_home}
         fi
     elif [ "`uname -s`" = "Darwin" ]
     then
         check_and_mount "mount" "-t smbfs" //clu@${bjo_bld_server}/clu        ${clu_bld_home}
         check_and_mount "mount" "-t smbfs" //clu@${bjo_file_server}/users/clu ${clu_domain_home}
         check_and_mount "sudo mount" "-o resvport,nolock -t nfs" ${clu_desktop_ip}:/home/clu        ${clu_desktop_home}
+        check_and_mount "sudo mount" "-o resvport,nolock -t nfs" ${clu_vb_debian_ip}:/home/clu        ${clu_vb_debian_home}
         #check_and_mount "mount" "-t smbfs" //clu@${clu_desktop_ip}/clu        ${clu_desktop_home}
     fi
     mount | grep clu
